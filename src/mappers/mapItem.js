@@ -5,7 +5,7 @@ import {
 } from '../utils';
 import moment from 'moment';
 
-export function mapItem(auth_id, imageKeys = ['url:image_base']) {
+export function mapItem(auth_id, image_key = 'image_base') {
   return item => {
     try {
       const {
@@ -25,6 +25,7 @@ export function mapItem(auth_id, imageKeys = ['url:image_base']) {
 
       const images = item['media:thumbnail'][0];
 
+      const imageKeys = [`url:${image_key}`];
       let media_group = imageKeys
         .map(imageKey => {
           try {
