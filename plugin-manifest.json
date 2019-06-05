@@ -6,15 +6,15 @@
   "platform": null,
   "author_name": "Yaniv Solnik",
   "author_email": "y.solnik@applicaster.com",
-  "manifest_version": "0.0.2",
+  "manifest_version": "0.0.3",
   "name": "Hearst Datasource",
   "description": "Hearst datasource",
   "type": "data_source_provider",
   "identifier": "hearstds",
   "ui_builder_support": true,
   "dependency_name": "@applicaster/zapp-pipes-provider-hearst",
-  "dependency_version": "1.0.1",
-  "whitelisted_account_ids": ["5c882170bc9708000894152b"],
+  "dependency_version": "1.0.2",
+  "whitelisted_account_ids": ["5c7e272b51a78800083d1187"],
   "min_zapp_sdk": "4.0.0",
   "deprecated_since_zapp_sdk": "",
   "unsupported_since_zapp_sdk": "",
@@ -25,8 +25,8 @@
       "value": "feed",
       "documentation": {
         "link": "https://github.com/applicaster/zapp-pipes-provider-hearst/#readme",
-        "input_description": "rss, image_key, auth_id",
-        "input_placeholder": "rss, image_key, auth_id",
+        "input_description": "rss, image_key, auth_id, sortBy, sortByDir, filter, filterFields",
+        "input_placeholder": "rss, image_key, auth_id, sortBy, sortByDir, filter, filterFields",
         "input_description_image_url": ""
       }
     }

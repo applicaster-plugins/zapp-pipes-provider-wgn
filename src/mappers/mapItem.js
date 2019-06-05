@@ -19,7 +19,8 @@ export function mapItem(auth_id, image_key = 'image_base') {
       const published = moment(
         new Date(getArrayFieldValue(_published))
       ).format();
-      const id = getArrayFieldValue(guid)._;
+      
+      const id = getArrayFieldValue(guid, true)._;
       const title = getArrayFieldValue(_title);
       const summary = getArrayFieldValue(_summary);
 
