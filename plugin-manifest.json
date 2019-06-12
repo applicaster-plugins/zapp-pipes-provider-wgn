@@ -6,7 +6,7 @@
   "platform": null,
   "author_name": "Yaniv Solnik",
   "author_email": "y.solnik@applicaster.com",
-  "manifest_version": "0.0.3",
+  "manifest_version": "0.7.1",
   "name": "Hearst Datasource",
   "description": "Hearst datasource",
   "type": "data_source_provider",
