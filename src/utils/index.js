@@ -92,5 +92,6 @@ export function getVideoSource(videos) {
     }
     return currentSource;
   }, null);
-  return source.url;
+  const {url: src, duration} = source;
+  return {src, duration}
 }

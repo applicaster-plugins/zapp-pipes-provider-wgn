@@ -11,7 +11,8 @@ export async function feed(params) {
     sortBy = '',
     sortByDir = 'asc',
     filter = '',
-    filterFields = 'title,summary'
+    filterFields = 'title,summary',
+    free = 'true'
   } = params;
   try {
     const result = await api.feed(rss);
@@ -19,7 +20,7 @@ export async function feed(params) {
     const title = rootItem.title[0];
     const items = rootItem.item;
     const entry = items
-      .map(mapItem(auth_id, image_key))
+      .map(mapItem(auth_id, image_key, free.toLowerCase()==='true'))
       .sort((_a, _b) => {
         if (!sortBy) {
           return -1;

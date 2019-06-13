@@ -5,7 +5,7 @@ import {
 } from '../utils';
 import moment from 'moment';
 
-export function mapItem(auth_id, image_key = 'image_base') {
+export function mapItem(auth_id, image_key = 'image_base', free = true) {
   return item => {
     try {
       const {
@@ -52,12 +52,18 @@ export function mapItem(auth_id, image_key = 'image_base') {
       const videos = item['media:group'][0]['media:content'].map(
         video => video.$
       );
-      const src = getVideoSource(videos);
+      const {src, duration: _duration} = getVideoSource(videos);
       const content = { src, type: 'video/hls' };
 
-      const free = true;
+      let duration;
+      try {
+        duration = `${Math.round(parseFloat(_duration) / 60).toString().padStart(2, '0')}min`;
+      } catch (err) {
+
+      }
+
       const videoAds = [];
-      const extensions = { free, auth_id, videoAds };
+      const extensions = { free, auth_id, videoAds, duration };
 
       return {
         type: {
