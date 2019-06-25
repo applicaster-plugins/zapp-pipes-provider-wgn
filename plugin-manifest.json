@@ -13,7 +13,7 @@
   "identifier": "hearstds",
   "ui_builder_support": true,
   "dependency_name": "@applicaster/zapp-pipes-provider-hearst",
-  "dependency_version": "2.0.1",
+  "dependency_version": "2.0.2",
   "whitelisted_account_ids": ["5c7e272b51a78800083d1187"],
   "min_zapp_sdk": "4.0.0",
   "deprecated_since_zapp_sdk": "",

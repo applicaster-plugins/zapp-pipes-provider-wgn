@@ -43,7 +43,7 @@ export function mapItem(auth_id, image_key = "image_base", free = true) {
       const link = {
         type: "text/html",
         rel: "alternate",
-        href: `hearst://plugin?type=player&action=playVodItem&vodItemId=${id}`
+        href: `hearst://play?voditemid=${id}`
       };
 
       const videos = item["media:group"][0]["media:content"].map(
