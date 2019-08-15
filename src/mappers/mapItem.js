@@ -2,10 +2,16 @@ import {
   getArrayFieldValue,
   createMediaGroupItem,
   getVideoSource
-} from "../utils";
-import moment from "moment";
+} from '../utils';
+import moment from 'moment';
 
-export function mapItem(auth_id, image_key = "image_base", free = true) {
+export function mapItem(
+  auth_id,
+  image_key = 'image_base',
+  _free = true,
+  freeItems = [],
+  nonFreeItems = []
+) {
   return item => {
     try {
       const {
@@ -24,13 +30,13 @@ export function mapItem(auth_id, image_key = "image_base", free = true) {
       const title = getArrayFieldValue(_title);
       const summary = getArrayFieldValue(_summary);
 
-      const images = item["media:thumbnail"][0];
+      const images = item['media:thumbnail'][0];
 
       const imageKeys = [`url:${image_key}`];
       let media_group = imageKeys
         .map(imageKey => {
           try {
-            const arr = imageKey.split(":");
+            const arr = imageKey.split(':');
             if (images.$[arr[0]]) {
               return createMediaGroupItem(images.$[arr[0]], arr[1]);
             }
@@ -41,22 +47,29 @@ export function mapItem(auth_id, image_key = "image_base", free = true) {
         .filter(i => i);
 
       const link = {
-        type: "text/html",
-        rel: "alternate",
+        type: 'text/html',
+        rel: 'alternate',
         href: `hearst://play?voditemid=${id}`
       };
 
-      const videos = item["media:group"][0]["media:content"].map(
+      const videos = item['media:group'][0]['media:content'].map(
         video => video.$
       );
       const { src, duration } = getVideoSource(videos);
-      const content = { src, type: "video/hls" };
+      const content = { src, type: 'video/hls' };
       const videoAds = [];
+
+      let free = _free;
+      if (freeItems && freeItems.indexOf(id) > -1) {
+        free = true;
+      } else if (nonFreeItems && nonFreeItems.indexOf(id) > -1) {
+        free = false;
+      }
       const extensions = { free, auth_id, videoAds, duration };
 
       return {
         type: {
-          value: "video"
+          value: 'video'
         },
         id,
         title,

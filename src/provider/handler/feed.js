@@ -12,15 +12,27 @@ export async function feed(params) {
     sortByDir = 'asc',
     filter = '',
     filterFields = 'title,summary',
-    free = 'true'
+    free = 'true',
+    freeItems: _freeItems = '',
+    nonFreeItems: _nonFreeItems = ''
   } = params;
   try {
     const result = await api.feed(rss);
     const rootItem = result.rss.channel[0];
     const title = rootItem.title[0];
     const items = rootItem.item;
+    const freeItems = _freeItems.split(',');
+    const nonFreeItems = _nonFreeItems.split(',');
     const entry = items
-      .map(mapItem(auth_id, image_key, free.toLowerCase()==='true'))
+      .map(
+        mapItem(
+          auth_id,
+          image_key,
+          free.toLowerCase() === 'true',
+          freeItems,
+          nonFreeItems
+        )
+      )
       .sort((_a, _b) => {
         if (!sortBy) {
           return -1;
