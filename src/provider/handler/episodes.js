@@ -2,10 +2,10 @@ import { api } from '../../api';
 import { createFeedItem, addItemsImages } from '../../utils';
 import { mapItem } from '../../mappers/mapItem';
 
-export async function feed(params) {
-  const { title: ptitle } = params;
+export async function episodes(params) {
+  const { id, ptitle, season } = params;
   try {
-    const items = await api.getAllSeries();
+    const items = await api.getSeriesEpisodes(id, season);
     const entry = await addItemsImages(items.map(mapItem));
     return createFeedItem(entry, ptitle);
   } catch (err) {

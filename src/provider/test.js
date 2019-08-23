@@ -1,3 +1,3 @@
 export const test = {
-  testCommand: 'hearstds://fetchData?type=test'
+  testCommand: 'wgnds://fetchData?type=test'
 };

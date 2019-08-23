@@ -1,32 +1,42 @@
 {
   "api": {},
   "dependency_repository_url": [
-    "https://github.com/applicaster/zapp-pipes-provider-hearst/"
+    "https://github.com/applicaster/zapp-pipes-provider-wgn/"
   ],
   "platform": null,
   "author_name": "Yaniv Solnik",
   "author_email": "y.solnik@applicaster.com",
-  "manifest_version": "0.8.2",
-  "name": "Hearst Datasource",
-  "description": "Hearst datasource",
+  "manifest_version": "0.0.1",
+  "name": "WGN Datasource",
+  "description": "WGN datasource",
   "type": "data_source_provider",
-  "identifier": "hearstds",
+  "identifier": "wgnds",
   "ui_builder_support": true,
-  "dependency_name": "@applicaster/zapp-pipes-provider-hearst",
-  "dependency_version": "2.0.3",
-  "whitelisted_account_ids": ["5c7e272b51a78800083d1187"],
+  "dependency_name": "@applicaster/zapp-pipes-provider-wgn",
+  "dependency_version": "1.0.0",
+  "whitelisted_account_ids": [""],
   "min_zapp_sdk": "4.0.0",
   "deprecated_since_zapp_sdk": "",
   "unsupported_since_zapp_sdk": "",
-  "scheme": "hearstds",
+  "scheme": "wgnds",
   "data_types": [
     {
       "label": "feed",
       "value": "feed",
       "documentation": {
-        "link": "https://github.com/applicaster/zapp-pipes-provider-hearst/#readme",
-        "input_description": "rss, image_key, auth_id, sortBy, sortByDir, filter, filterFields",
-        "input_placeholder": "rss, image_key, auth_id, sortBy, sortByDir, filter, filterFields",
+        "link": "https://github.com/applicaster/zapp-pipes-provider-wgn/#readme",
+        "input_description": "",
+        "input_placeholder": "",
+        "input_description_image_url": ""
+      }
+    },
+    {
+      "label": "series",
+      "value": "series",
+      "documentation": {
+        "link": "https://github.com/applicaster/zapp-pipes-provider-wgn/#readme",
+        "input_description": "",
+        "input_placeholder": "",
         "input_description_image_url": ""
       }
     }

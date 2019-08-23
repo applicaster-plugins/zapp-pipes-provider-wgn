@@ -1,16 +1,20 @@
 export const manifest = {
-  handlers: ['feed', 'test'],
+  handlers: ['feed', 'seasons', 'episodes', 'test'],
   help: {
     feed: {
-      description: 'retrieves a hearst rss feed',
+      description: 'retrieves a wgn series feed',
+      params: {}
+    },
+    episodes: {
+      description: 'retrieves episodes specific wgn series',
       params: {
-        rss: 'rss url',
-        image_key: 'optional. image key to use',
-        auth_id: 'authId/s to populate',
-        sortBy: 'optional. sort by field name',
-        sortByDir: 'optional. sort by direction (asc/desc)',
-        filter: 'optional. search filter value',
-        filterFields: 'optional. search filter field names'
+        id: 'series id'
+      }
+    },
+    seasons: {
+      description: 'retrieves seasons specific wgn series',
+      params: {
+        id: 'series id'
       }
     },
     test: {

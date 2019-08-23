@@ -1,4 +1,5 @@
 import _url from 'url';
+import { api } from '../api';
 
 export function createMediaGroupItem(src, key) {
   return {
@@ -49,7 +50,7 @@ export function updateParamsFromPluginConfiguration(providerInterface, params) {
       } catch (err) {
         o = pluginConfigurations;
       }
-      const bc = o['hearstds'];
+      const bc = o['wgnds'];
       Object.keys(bc).forEach(key => {
         if (!params[key]) {
           params[key] = bc[key];
@@ -92,6 +93,23 @@ export function getVideoSource(videos) {
     }
     return currentSource;
   }, null);
-  const {url: src, duration} = source;
-  return {src, duration}
+  const { url: src, duration } = source;
+  return { src, duration };
+}
+
+export async function addItemsImages(items) {
+  const images = await Promise.all(
+    items.map(item => {
+      return api.getImageForItem(item.id);
+    })
+  );
+  images.forEach(imageItem => {
+    const { id, image } = imageItem;
+    const item = items.find(item => item.id === id);
+    if (item) {
+      item.media_group = [createMediaGroupItem(image, 'image_base')];
+    }
+  });
+
+  return items;
 }
