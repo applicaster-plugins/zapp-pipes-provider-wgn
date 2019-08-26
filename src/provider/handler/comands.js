@@ -1,4 +1,4 @@
-import { feed } from './feed';
+import { shows } from './shows';
 import { episodes } from './episodes';
 import { seasons } from './seasons';
 
@@ -7,7 +7,7 @@ const test = () => {
 };
 
 export const commands = {
-  feed,
+  shows,
   episodes,
   seasons,
   test

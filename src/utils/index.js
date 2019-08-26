@@ -113,3 +113,31 @@ export async function addItemsImages(items) {
 
   return items;
 }
+
+export async function addItemsVideos(items) {
+  const videos = await Promise.all(
+    items.map(item => {
+      let aid = -1;
+      try {
+        aid = item.videos['full-episodes'].ID;
+      } catch (err) {}
+      return api.getVideo(aid);
+    })
+  );
+  videos.forEach(videoItem => {
+    const { id, video } = videoItem;
+    const item = items.find(aitem => {
+      try {
+        const aid = aitem.videos['full-episodes'].ID;
+        return aid === id;
+      } catch (err) {
+        return false;
+      }
+    });
+    if (item) {
+      item.video = video;
+    }
+  });
+
+  return items;
+}

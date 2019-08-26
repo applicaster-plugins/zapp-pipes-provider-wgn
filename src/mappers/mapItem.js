@@ -7,7 +7,8 @@ export function mapItem(item) {
       title: { rendered: title },
       content: { rendered: summary = '' } = {},
       date: _published,
-      links
+      links,
+      video
     } = item;
 
     const published = moment(new Date(_published)).format();
@@ -22,13 +23,28 @@ export function mapItem(item) {
       };
     } catch (err) {}
 
-    const type = 'link';
-    const src = `wgnds://fetchData?type=series&id=${id}`;
+    let type = 'link';
+    let src = `wgnds://fetchData?type=series&id=${id}`;
+
+    if (video) {
+      try {
+        if (video['video-meta']['akamai-player'].id) {
+          type = 'video/hls';
+          src = video['video-meta']['akamai-player']['hls_id'];
+        } else {
+          type = 'video/ooyala';
+          src = video['video-meta']['ooyala-player']['player_id'];
+        }
+      } catch (err) {}
+    } else {
+    }
     const content = { type, src };
+
+    const itemTypeValue = video ? 'video' : 'feed';
 
     return {
       type: {
-        value: 'feed'
+        value: itemTypeValue
       },
       id,
       title,

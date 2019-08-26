@@ -2,7 +2,7 @@ import { api } from '../../api';
 import { createFeedItem, addItemsImages } from '../../utils';
 import { mapItem } from '../../mappers/mapItem';
 
-export async function feed(params) {
+export async function shows(params) {
   const { title: ptitle } = params;
   try {
     const items = await api.getAllSeries();

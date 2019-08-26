@@ -1,7 +1,7 @@
 export const manifest = {
-  handlers: ['feed', 'seasons', 'episodes', 'test'],
+  handlers: ['shows', 'seasons', 'episodes', 'test'],
   help: {
-    feed: {
+    shows: {
       description: 'retrieves a wgn series feed',
       params: {}
     },
