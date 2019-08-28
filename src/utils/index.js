@@ -1,5 +1,6 @@
 import _url from 'url';
 import { api } from '../api';
+import { config } from '../config';
 
 export function createMediaGroupItem(src, key) {
   return {
@@ -107,7 +108,12 @@ export async function addItemsImages(items) {
     const { id, image } = imageItem;
     const item = items.find(item => item.id === id);
     if (item) {
-      item.media_group = [createMediaGroupItem(image, 'image_base')];
+      item.media_group = config.IMAGE_SIZES.map(imageSize => {
+        const { key, width, height } = imageSize;
+        const url =
+          width === 0 ? image : `${image}?w=${width}&h=${height}&crop=1`;
+        return createMediaGroupItem(url, key);
+      });
     }
   });
 

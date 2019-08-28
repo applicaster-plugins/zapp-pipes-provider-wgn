@@ -5,7 +5,7 @@ export function mapItem(item) {
     const {
       id,
       title: { rendered: title },
-      content: { rendered: summary = '' } = {},
+      excerpt: { rendered: summary = '' } = {},
       date: _published,
       links,
       video
