@@ -25,9 +25,10 @@ export function mapItem(item) {
 
     let type = 'link';
     let src = `wgnds://fetchData?type=series&id=${id}`;
-
+    let extensions;
     if (video) {
       try {
+        let free = true;
         if (video['video-meta']['akamai-player'].id) {
           type = 'video/hls';
           src = video['video-meta']['akamai-player']['hls_id'];
@@ -35,6 +36,8 @@ export function mapItem(item) {
           type = 'video/ooyala';
           src = video['video-meta']['ooyala-player']['player_id'];
         }
+        free = video['video-meta']['akamai-player'].auth !== '1';
+        extensions = { free };
       } catch (err) {}
     } else {
     }
@@ -51,10 +54,10 @@ export function mapItem(item) {
       published,
       summary,
       content,
-      link
+      link,
+      extensions
     };
   } catch (err) {
-    console.log(err);
     return {};
   }
 }
