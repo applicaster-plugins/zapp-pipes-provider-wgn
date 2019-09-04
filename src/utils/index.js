@@ -28,7 +28,7 @@ export function updateParamsFromUrl(params) {
   const { url = '' } = params;
   let q = {};
   try {
-    const aUrl = _url.parse(url, true);
+    const aUrl = _url.parse(url.indexOf('?') === 0 ? url : `?${url}`, true);
     q = aUrl.query;
     Object.keys(q).forEach(key => {
       if (!params[key]) {
