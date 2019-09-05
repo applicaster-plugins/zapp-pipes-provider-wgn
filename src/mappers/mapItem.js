@@ -24,7 +24,7 @@ export function mapItem(item) {
     } catch (err) {}
 
     let type = 'link';
-    let src = `wgnds://fetchData?type=series&id=${id}`;
+    let src = `wgnds://fetchData?type=seasons&id=${id}`;
     let extensions;
     if (video) {
       try {
