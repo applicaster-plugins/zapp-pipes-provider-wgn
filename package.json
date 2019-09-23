@@ -29,7 +29,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "moment": "^2.22.1",
-    "query-string": "^6.1.0",
+    "query-string": "^6.8.3",
     "xml2js-parser": "^1.1.1"
   },
   "devDependencies": {

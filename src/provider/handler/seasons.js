@@ -1,10 +1,18 @@
 import { api } from '../../api';
-import { createFeedItem } from '../../utils';
+import { createFeedItem, addItemsImages } from '../../utils';
 import { mapSeason } from '../../mappers/mapSeason';
+import { mapItem } from '../../mappers/mapItem';
+import queryString from 'query-string';
 
 export async function seasons(params) {
-  const { id, ptitle } = params;
+  const { id, imageWidth = 600 } = params;
   try {
+    let parentItem = await api.getSeries(id);
+
+    const feedUrl = `wgnds://fetchData?${queryString.stringify(params)}`;
+
+    parentItem = (await addItemsImages([mapItem()(parentItem)], imageWidth))[0];
+
     const allSeasons = await api.getAllSeasons();
     const items = await api.getSeriesEpisodes(id);
     const seasons = items.reduce((sum, item) => {
@@ -20,9 +28,11 @@ export async function seasons(params) {
       return sum;
     }, []);
 
-    const entry = seasons.sort((a, b) => a.id - b.id).map(mapSeason(id));
+    parentItem.entry = seasons
+      .sort((a, b) => a.id - b.id)
+      .map(mapSeason(id, feedUrl));
 
-    return createFeedItem(entry, ptitle);
+    return parentItem;
   } catch (err) {
     return createFeedItem([], err.message);
   }

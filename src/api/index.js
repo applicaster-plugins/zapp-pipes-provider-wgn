@@ -4,6 +4,7 @@ import { getSeriesEpisodes } from './getSeriesEpisodes';
 import { getAllSeasons } from './getAllSeasons';
 import { getAllVideos } from './getAllVideos';
 import { getVideo } from './getVideo';
+import { getSeries } from './getSeries';
 
 export const api = {
   getAllSeries,
@@ -11,5 +12,6 @@ export const api = {
   getSeriesEpisodes,
   getAllSeasons,
   getAllVideos,
-  getVideo
+  getVideo,
+  getSeries
 };
