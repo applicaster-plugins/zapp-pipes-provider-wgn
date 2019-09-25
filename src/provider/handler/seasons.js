@@ -5,7 +5,7 @@ import { mapItem } from '../../mappers/mapItem';
 import queryString from 'query-string';
 
 export async function seasons(params) {
-  const { id, imageWidth = 600 } = params;
+  const { id, imageWidth = 600, title: ptitle } = params;
   try {
     let parentItem = await api.getSeries(id);
 
@@ -32,6 +32,9 @@ export async function seasons(params) {
       .sort((a, b) => a.id - b.id)
       .map(mapSeason(id, feedUrl));
 
+    if (ptitle) {
+      parentItem.title = ptitle;
+    }
     return parentItem;
   } catch (err) {
     return createFeedItem([], err.message);
