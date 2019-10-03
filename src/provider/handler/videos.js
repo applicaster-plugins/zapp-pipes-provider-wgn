@@ -14,9 +14,13 @@ export async function videos(params) {
     };
 
     let items = await api.getVideosByTag(tag);
-    items = await addItemsVideos(items);
     parentItem.entry = await addItemsImages(
-      items.map(mapItem(feedUrl)),
+      items
+        .map(item => {
+          item.video = { 'video-meta': item['video-meta'] };
+          return item;
+        })
+        .map(mapItem(feedUrl)),
       imageWidth
     );
 
