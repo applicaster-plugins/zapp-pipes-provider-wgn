@@ -14,13 +14,16 @@ export async function videos(params) {
     };
 
     let items = await api.getVideosByTag(tag);
+    
     parentItem.entry = await addItemsImages(
-      items
+     await Promise.all(
+        items
         .map(item => {
           item.video = { 'video-meta': item['video-meta'] };
           return item;
         })
-        .map(await mapItem(feedUrl)),
+        .map(mapItem(feedUrl))
+      ),
       imageWidth
     );
 
