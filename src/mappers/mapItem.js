@@ -38,7 +38,7 @@ export function mapItem(feed_parent_ds_url) {
             src = video['video-meta']['akamai-player']['hls_id'];
           } else {
             type = 'video/ooyala';
-            src = await getStreamUrl(video['video-meta']['ooyala-player']['player_id']);
+            src = await getStreamUrl(video['video-meta']['ooyala-player']['code']);
           }
           free = video['video-meta']['akamai-player'].auth !== '1';
 

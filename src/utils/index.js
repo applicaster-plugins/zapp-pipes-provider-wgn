@@ -154,5 +154,7 @@ export async function addItemsVideos(items) {
 
 
 export async function getStreamUrl(id) {
+  console.log("ELAD", id);
+  
   return "elad elad"
 }
