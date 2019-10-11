@@ -20,7 +20,7 @@ export async function videos(params) {
           item.video = { 'video-meta': item['video-meta'] };
           return item;
         })
-        .map(mapItem(feedUrl)),
+        .map(await mapItem(feedUrl)),
       imageWidth
     );
 
