@@ -11,7 +11,9 @@ export async function seasons(params) {
 
     const feedUrl = `wgnds://fetchData?${queryString.stringify(params)}`;
 
-    parentItem = (await addItemsImages([mapItem()(parentItem)], imageWidth))[0];
+    parentItem = (await addItemsImages(
+      [await Promise.all(items.map(mapItem(parentItem)))],
+       imageWidth))[0];
 
     const allSeasons = await api.getAllSeasons();
     const items = await api.getSeriesEpisodes(id);

@@ -29,7 +29,7 @@ export async function episodes(params) {
     let items = await api.getSeriesEpisodes(id, season);
     items = await addItemsVideos(items);
     parentItem.entry = await addItemsImages(
-      items.map(mapItem(feedUrl)),
+      await Promise.all(items.map(mapItem(feedUrl))),
       imageWidth
     );
 
