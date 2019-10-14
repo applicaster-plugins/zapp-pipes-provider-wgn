@@ -154,7 +154,5 @@ export async function addItemsVideos(items) {
 
 
 export async function getStreamUrl(id) {
-  console.log("ELAD", id);
-  api.getStreamUrl(id);
-  return "elad elad"
+   return await api.getStreamUrl(id);
 }
