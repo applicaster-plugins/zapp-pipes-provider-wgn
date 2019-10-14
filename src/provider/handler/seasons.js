@@ -10,8 +10,9 @@ export async function seasons(params) {
     let parentItem = await api.getSeries(id);
 
     const feedUrl = `wgnds://fetchData?${queryString.stringify(params)}`;
-
-    parentItem = (await addItemsImages([mapItem()(parentItem)], imageWidth))[0];
+    parentItem = (await addItemsImages(
+      await Promise.all([mapItem()(parentItem)]),
+       imageWidth))[0];
 
     const allSeasons = await api.getAllSeasons();
     const items = await api.getSeriesEpisodes(id);
@@ -37,6 +38,8 @@ export async function seasons(params) {
     }
     return parentItem;
   } catch (err) {
+    console.log(err);
+    
     return createFeedItem([], err.message);
   }
 }

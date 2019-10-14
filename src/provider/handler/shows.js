@@ -8,7 +8,9 @@ export async function shows(params) {
   try {
     const items = await api.getAllSeries();
     const feedUrl = `wgnds://fetchData?${queryString.stringify(params)}`;
-    const entry = await addItemsImages(items.map(mapItem(feedUrl)), imageWidth);
+    const entry = await addItemsImages(
+      await Promise.all(items.map(mapItem(feedUrl))),
+      imageWidth);  
     return createFeedItem(entry, ptitle);
   } catch (err) {
     return createFeedItem([], err.message);
