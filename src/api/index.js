@@ -6,6 +6,7 @@ import { getAllVideos } from './getAllVideos';
 import { getVideo } from './getVideo';
 import { getSeries } from './getSeries';
 import { getVideosByTag } from './getVideosByTag';
+import { getStreamUrl } from './getStreamUrl';
 
 export const api = {
   getAllSeries,
@@ -15,5 +16,6 @@ export const api = {
   getAllVideos,
   getVideo,
   getSeries,
-  getVideosByTag
+  getVideosByTag,
+  getStreamUrl
 };

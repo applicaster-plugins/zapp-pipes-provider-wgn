@@ -151,3 +151,8 @@ export async function addItemsVideos(items) {
 
   return items;
 }
+
+
+export async function getStreamUrl(id) {
+   return await api.getStreamUrl(id);
+}

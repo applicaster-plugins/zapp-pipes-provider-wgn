@@ -1,6 +1,6 @@
 {
   "name": "@applicaster/zapp-pipes-provider-wgn",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "data source provider for wgn",
   "main": "lib/index.js",
   "scripts": {
@@ -28,8 +28,11 @@
   "homepage": "https://github.com/applicaster/zapp-pipes-provider-wgn#readme",
   "dependencies": {
     "axios": "^0.16.2",
+    "base-64": "^0.1.0",
+    "js-sha256": "^0.9.0",
     "moment": "^2.22.1",
     "query-string": "^6.8.3",
+    "text-encoder-lite": "^2.0.0",
     "xml2js-parser": "^1.1.1"
   },
   "devDependencies": {

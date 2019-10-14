@@ -1,7 +1,9 @@
 export const config = {
   api: {
     baseUrl: 'https://wgnamerica.com/wp-json/wp/v2',
-    baseUrlTest: 'https://wgnamerica-com-preprod.go-vip.net/wp-json/wp/v2'
+    baseUrlTest: 'https://wgnamerica-com-preprod.go-vip.net/wp-json/wp/v2',
+    secret: 'm_wfjkDsOmF28lNfDW9lPS6_LM_sUkrlJ4J2RdQT',
+    api_key: 's4cGsyOnQjTMDB24ULBewLJLcOCK.P604C',
   },
   IMAGE_SIZES: [
     { key: 'image_base', width: 0, height: 0 },
