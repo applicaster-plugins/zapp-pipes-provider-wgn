@@ -30,6 +30,11 @@ export function mapItem(feed_parent_ds_url) {
         feed_parent_ds_url
       )}`;
       let extensions = {};
+      var genaretedtag =  title.toLowerCase().replace(/ /g, "-");
+      feed_parent_ds_url = `wgnds://fetchData?type=videos&tag=${genaretedtag}&title=${encodeURIComponent(title)}`
+      const dataSourceUrl = { feed_parent_ds_url };
+      extensions = { dataSourceUrl };
+
       if (video) {
         try {
           let free = true;
@@ -41,10 +46,8 @@ export function mapItem(feed_parent_ds_url) {
             src =  await getStreamUrl(video['video-meta']['ooyala-player']['code']);
           }
           free = video['video-meta']['akamai-player'].auth !== '1';
-
-          const dataSourceUrl = { feed_parent_ds_url };
-
-          extensions = { free, dataSourceUrl };
+  
+          extensions.free  = free;
         } catch (err) {}
       } else {
       }
