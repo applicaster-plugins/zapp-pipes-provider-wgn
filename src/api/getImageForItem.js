@@ -31,8 +31,8 @@ function  getImageList(array){
       link: ""
      },
      {
-      key: "image_base_4x3",
-      lable:"4x3",
+      key: "image_base_3x4",
+      lable:"3x4",
       link: ""
      }
   ];
@@ -40,18 +40,12 @@ function  getImageList(array){
   if(array && array.length > 0 ){
     response.map(image => {
         array.map(item => {
-          if(item.image_tags){
-            item.image_tags.map(tag => {
-              if (image.lable == tag.name){
-                image.link = item.source_url;
-                return;
-              }
-            })
-            return;
+          if(image.lable == item.slug ){
+            image.link = item.source_url;
           }
+          return;
         })
     })
- 
     response.push(
      {
        key: "image_base",
