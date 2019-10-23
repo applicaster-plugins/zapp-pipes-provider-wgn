@@ -34,28 +34,17 @@ function  getImageList(array){
       key: "image_base_3x4",
       lable:"3x4",
       link: ""
-<<<<<<< HEAD
-=======
      },
      {
       key: "image_base_4x3",
       lable:"4x3",
       link: ""
->>>>>>> master
      }
   ];
   
   if(array && array.length > 0 ){
     response.map(image => {
         array.map(item => {
-<<<<<<< HEAD
-          if(image.lable == item.slug ){
-            image.link = item.source_url;
-          }
-          return;
-        })
-    })
-=======
           if(item.image_tags){
             item.image_tags.map(tag => {
               if (image.lable == tag.name){
@@ -67,9 +56,7 @@ function  getImageList(array){
           }
         })
     })
- 
->>>>>>> master
-    response.push(
+     response.push(
      {
        key: "image_base",
        lable:"image_base",
