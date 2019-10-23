@@ -32,9 +32,9 @@ export function mapItem(feed_parent_ds_url) {
         feed_parent_ds_url
       )}`;
       let extensions = {};
-      var genaretedtag =  title.toLowerCase().replace(/ /g, "-");
-      feed_parent_ds_url = `wgnds://fetchData?type=videos&tag=${genaretedtag}&title=${encodeURIComponent(title)}`
-      const dataSourceUrl = { feed_parent_ds_url };
+      var genaretedtag =  title.toLowerCase().replace(/ /g, "-") + "-related";
+      var tagDSUrl = `wgnds://fetchData?type=videos&tag=${genaretedtag}&title=${encodeURIComponent(title)}`
+      const dataSourceUrl = { feed_parent_ds_url: tagDSUrl };
       extensions = { dataSourceUrl };
 
       if (video) {
@@ -48,7 +48,8 @@ export function mapItem(feed_parent_ds_url) {
             src =  await getStreamUrl(video['video-meta']['ooyala-player']['code']);
           }
           free = video['video-meta']['akamai-player'].auth !== '1';
-  
+          //for video we ovveride the datasource url to load the parent and not a tag.
+          extensions.dataSourceUrl.feed_parent_ds_url = feed_parent_ds_url;
           extensions.free  = free;
         } catch (err) {}
       } else {
