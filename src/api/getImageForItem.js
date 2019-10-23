@@ -34,6 +34,11 @@ function  getImageList(array){
       key: "image_base_3x4",
       lable:"3x4",
       link: ""
+     },
+     {
+      key: "image_base_4x3",
+      lable:"4x3",
+      link: ""
      }
   ];
   
