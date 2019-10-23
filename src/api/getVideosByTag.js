@@ -18,7 +18,7 @@ async function getTagdId(tagParam){
   if(isNaN(tagId)){
     return await loadAllTags(0, tagParam);
   }else{
-    return tag;
+    return tagParam;
   }
 }
 
