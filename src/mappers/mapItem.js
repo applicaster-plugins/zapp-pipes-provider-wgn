@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { getStreamUrl } from '../utils';
+import he from 'he';
 
 export function mapItem(feed_parent_ds_url) {
   return async function(item) {
@@ -12,7 +13,8 @@ export function mapItem(feed_parent_ds_url) {
         links,
         video
       } = item;
-
+      const decodedTitle = he.decode(title);
+      const decodedSummary = he.decode(summary);
       const published = moment(new Date(_published)).format();
 
       let link;
@@ -66,9 +68,9 @@ export function mapItem(feed_parent_ds_url) {
           value: itemTypeValue
         },
         id,
-        title,
+        title: decodedTitle,
         published,
-        summary,
+        summary: decodedSummary,
         content,
         link,
         extensions
