@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { getStreamUrl } from '../utils';
-import he from 'he';
 
 export function mapItem(feed_parent_ds_url) {
   return async function(item) {
