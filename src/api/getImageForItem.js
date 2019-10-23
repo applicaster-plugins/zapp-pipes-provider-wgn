@@ -56,8 +56,7 @@ function  getImageList(array){
           }
         })
     })
- 
-    response.push(
+     response.push(
      {
        key: "image_base",
        lable:"image_base",
