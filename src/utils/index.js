@@ -99,24 +99,17 @@ export function getVideoSource(videos) {
 }
 
 export async function addItemsImages(items, imageWidth) {
-  const images = await Promise.all(
+  const images2Id = await Promise.all(
     items.map(item => {
       return api.getImageForItem(item.id);
     })
   );
-  images.forEach(imageItem => {
-    const { id, image } = imageItem;
+  images2Id.forEach(imageItem => {
+    const { id, images } = imageItem;
     const item = items.find(item => item.id === id);
     if (item) {
-      item.media_group = config.IMAGE_SIZES.map(imageSize => {
-        const { key, ratio = 1 } = imageSize;
-        const width = imageWidth
-          ? parseInt(imageWidth)
-          : config.DEFAULT_IMAGE_WIDTH;
-        const height = width / ratio;
-        const url =
-          width === 0 ? image : `${image}?w=${width}&h=${height}&crop=1`;
-        return createMediaGroupItem(url, key);
+      item.media_group = images.map( image => {
+        return createMediaGroupItem(image.link, image.key);
       });
     }
   });
