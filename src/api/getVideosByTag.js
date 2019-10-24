@@ -25,9 +25,11 @@ async function getTagdId(tagParam){
 
 async function loadAllTags(index, tagId){
   const response = await axios.get(`${config.api.baseUrl}/tags?per_page=100&page=${index+1}`);
-  var numberOfPage = response.headers["x-wp-totalpages"];
-  numberOfPage = parseInt(numberOfPage);
-
+  var numberOfPage = undefined;
+  if(response.headers){
+    numberOfPage = response.headers["x-wp-totalpages"];
+    numberOfPage = parseInt(numberOfPage);
+  }
   var tag = response.data.filter(tag => {
     return tag.name == tagId
   })
