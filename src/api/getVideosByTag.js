@@ -4,18 +4,11 @@ import { config } from '../config';
 export async function getVideosByTag(tag) {
   try {
     var tagId = await getTagdId(tag);
-    console.log(tagId);
-    if(!tagId){
-      tagId = "elad"
-    }
     const response = await axios.get(
       `${config.api.baseUrl}/wgn-videos/?tags=${tagId}`
     );
-    console.log(response.data);
     return response.data;
   } catch (err) {
-    console.log(err);
-
     return {}
   }
 }
@@ -32,9 +25,6 @@ async function getTagdId(tagParam){
 
 async function loadAllTags(index, tagId){
   const response = await axios.get(`${config.api.baseUrl}/tags?per_page=100&page=${index+1}`);
-  console.log("ELAD");
-
-  console.log(response.headers);
   var numberOfPage = undefined;
   if(response.headers){
     numberOfPage = response.headers["x-wp-totalpages"];
