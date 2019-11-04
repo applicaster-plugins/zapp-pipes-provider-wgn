@@ -4,6 +4,11 @@ import he from 'he';
 
 export function mapItem(feed_parent_ds_url) {
   return async function(item) {
+    
+    console.log("ITEM")
+    console.log(JSON.stringify(item));
+    console.log("*******ITEM*********")
+
     try {
       const {
         id,
@@ -49,7 +54,7 @@ export function mapItem(feed_parent_ds_url) {
           }
           free = video['video-meta']['akamai-player'].auth !== '1';
           //for video we ovveride the datasource url to load the parent and not a tag.
-          extensions.dataSourceUrl.feed_parent_ds_url = feed_parent_ds_url;
+          // extensions.dataSourceUrl.feed_parent_ds_url = feed_parent_ds_url;
           extensions.free  = free;
         } catch (err) {}
       } else {
