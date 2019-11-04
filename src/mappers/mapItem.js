@@ -40,7 +40,7 @@ export function mapItem(feed_parent_ds_url) {
       if (video) {
         try {
           let free = true;
-          if (video['video-meta']['akamai-player'].id) {
+          if (video['video-meta']['akamai-player'].id || video['video-meta']['akamai-player'].hls_id) {
             type = 'video/hls';
             src = video['video-meta']['akamai-player']['hls_id'];
           } else {
