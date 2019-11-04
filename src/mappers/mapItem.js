@@ -40,28 +40,26 @@ export function mapItem(feed_parent_ds_url) {
       var genaretedtag =  title.toLowerCase().replace(/ /g, "-") + "-related";
       var tagDSUrl = `wgnds://fetchData?type=videos&tag=${genaretedtag}&title=${encodeURIComponent(title)}`
       const dataSourceUrl = { feed_parent_ds_url: tagDSUrl };
-      extensions = { dataSourceUrl };
+      extensions = { dataSourceUrl, free: true };
 
       if (video) {
         try {
-          let free = true;
           if (video['video-meta']['akamai-player'].id || video['video-meta']['akamai-player'].hls_id) {
             type = 'video/hls';
             src = video['video-meta']['akamai-player']['hls_id'];
+            extensions.free = video['video-meta']['akamai-player'].auth !== '1';
           } else {
             type = 'video/ooyala';
             src =  await getStreamUrl(video['video-meta']['ooyala-player']['code']);
           }
-          free = video['video-meta']['akamai-player'].auth !== '1';
           //for video we ovveride the datasource url to load the parent and not a tag.
           // extensions.dataSourceUrl.feed_parent_ds_url = feed_parent_ds_url;
-          extensions.free  = free;
         } catch (err) {}
       } else {
       }
 
       const open_with_plugin_id = 'VideoInfoScreenRN';
-      const year = new Date(_published).getFullYear();
+      const year = "";// new Date(_published).getFullYear();
       extensions.open_with_plugin_id = open_with_plugin_id;
       extensions.year = year;
 
