@@ -4,7 +4,7 @@ import { config } from '../config';
 export async function getSeriesEpisodes(id, season) {
   try {
     const response = await axios.get(
-      `${config.api.baseUrl}/wgn-episodes?parent=${id}`
+      `${config.api.baseUrl}/wgn-episodes?parent=${id}&per_page=100`
     );
     return response.data.filter(item => {
       if (!season) return true;
