@@ -5,7 +5,7 @@ export async function getVideosByTag(tag) {
   try {
     var tagId = await getTagdId(tag);
     const response = await axios.get(
-      `${config.api.baseUrl}/wgn-videos/?tags=${tagId}`
+      `${config.api.baseUrl}/wgn-videos/?tags=${tagId}&per_page=100`
     );
     return response.data;
   } catch (err) {
