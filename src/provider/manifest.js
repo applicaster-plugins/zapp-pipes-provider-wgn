@@ -1,5 +1,5 @@
 export const manifest = {
-  handlers: ['shows', 'seasons', 'episodes', 'videos', 'test'],
+  handlers: ['shows', 'seasons', 'episodes', 'videos', 'tags', 'test'],
   help: {
     shows: {
       description: 'retrieves a wgn series feed',
@@ -21,6 +21,14 @@ export const manifest = {
       description: 'retrieves videos by tag',
       params: {
         tag: 'tag'
+      }
+    },
+    tags: {
+      description: 'retrieves items by tag',
+      params: {
+        tag: 'tag id',
+        tagType: 'tag type, videos/episodes/series.',
+        full_path: 'full path to the wordpress entry point',
       }
     },
     test: {

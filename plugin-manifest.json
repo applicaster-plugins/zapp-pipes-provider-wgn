@@ -6,14 +6,14 @@
   "platform": null,
   "author_name": "Elad Kariti",
   "author_email": "e.kariti@applicaster.com",
-  "manifest_version": "1.2.1",
+  "manifest_version": "2.0.0",
   "name": "WGN Datasource",
   "description": "WGN datasource",
   "type": "data_source_provider",
   "identifier": "wgnds",
   "ui_builder_support": true,
   "dependency_name": "@applicaster/zapp-pipes-provider-wgn",
-  "dependency_version": "1.2.1",
+  "dependency_version": "2.0.0",
   "whitelisted_account_ids": ["5d31d83c3ee60f00085c4ff4"],
   "min_zapp_sdk": "4.0.0",
   "deprecated_since_zapp_sdk": "",
@@ -57,6 +57,16 @@
         "link": "https://github.com/applicaster/zapp-pipes-provider-wgn/#readme",
         "input_description": "tag",
         "input_placeholder": "tag",
+        "input_description_image_url": ""
+      }
+    },
+    {
+      "label": "tags",
+      "value": "tags",
+      "documentation": {
+        "link": "https://github.com/applicaster/zapp-pipes-provider-wgn/#readme",
+        "input_description": "load tags from WP, use tag id/name + tag type (videos/episodes/series) or the full WP end point as a url",
+        "input_placeholder": "tag=<tag_id>&tagType=<type>&full_path=<url>",
         "input_description_image_url": ""
       }
     }

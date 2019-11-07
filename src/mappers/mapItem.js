@@ -78,17 +78,17 @@ export function mapItem(feed_parent_ds_url) {
 function getTag(type, item, title, feed_parent_ds_url){
   const dataSourceUrl ={};
   var relatedUrl;
-  var genaretedtag = item.related_items_tag && item.related_items_tag.id ?  item.related_items_tag.id : undefined;
-  if(!genaretedtag){    
+  var tag = item.related_items_tag && item.related_items_tag.href ?  item.related_items_tag.href : undefined;
+  if(!tag){    
     //fallback for any case that we don't have related items. 
     if(type == "video"){
       relatedUrl = feed_parent_ds_url
     }else{
-      genaretedtag = title.toLowerCase().replace(/ /g, "-") + "-related";
-      relatedUrl = `wgnds://fetchData?type=videos&tag=${genaretedtag}&title=${encodeURIComponent(title)}`
+      tag = title.toLowerCase().replace(/ /g, "-") + "-related";
+      relatedUrl = `wgnds://fetchData?type=videos&tag=${tag}&title=${encodeURIComponent(title)}`
     }
   }else{
-    relatedUrl = `wgnds://fetchData?type=videos&tag=${genaretedtag}&title=${encodeURIComponent(title)}`
+    relatedUrl = `wgnds://fetchData?type=tags&full_path=${encodeURIComponent(tag)}&title=${encodeURIComponent(title)}`
   }
   dataSourceUrl.feed_parent_ds_url =  relatedUrl;
   return dataSourceUrl;
