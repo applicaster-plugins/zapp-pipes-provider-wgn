@@ -66,7 +66,7 @@
       "documentation": {
         "link": "https://github.com/applicaster/zapp-pipes-provider-wgn/#readme",
         "input_description": "load tags from WP, use tag id/name + tag type (videos/episodes/series) or the full WP end point as a url",
-        "input_placeholder": "tag=<tag_id>&type=<type>&full_path=<url>",
+        "input_placeholder": "tag=<tag_id>&tagType=<type>&full_path=<url>",
         "input_description_image_url": ""
       }
     }

@@ -17,8 +17,8 @@ export const config = {
   DEFAULT_IMAGE_WIDTH: 600,
   tagMap: {
     videos: "wgn-videos",
-    episodes: "wgn-series",
-    series: "wgn-episodes"
+    series: "wgn-series",
+    episodes: "wgn-episodes"
   }
 
 };

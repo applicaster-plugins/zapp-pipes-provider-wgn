@@ -4,7 +4,8 @@ import { mapItem } from '../../mappers/mapItem';
 import queryString from 'query-string';
 
 export async function tags(params) {
-  const { tag, type, full_path, title: ptitle } = params;
+  const { tag, tagType, full_path, title: ptitle } = params;
+  
   try {
     const feedUrl = `wgnds://fetchData?${queryString.stringify(params)}`;
 
@@ -17,7 +18,7 @@ export async function tags(params) {
     if(full_path){
         items = await api.getItemsByTagWithFullPath(full_path);
     }else{
-        items =  await api.getVideosByTag(tag, type);
+        items =  await api.getItemsByTag(tag, tagType);
     }
    
     parentItem.entry = await addItemsImages(
