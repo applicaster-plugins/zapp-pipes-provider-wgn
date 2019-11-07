@@ -31,12 +31,8 @@ export function mapItem(feed_parent_ds_url) {
       let src = `wgnds://fetchData?type=seasons&id=${id}&parentFeedUrl=${encodeURIComponent(
         feed_parent_ds_url
       )}`;
-      let extensions = {};
-      var genaretedtag =  title.toLowerCase().replace(/ /g, "-") + "-related";
-      var tagDSUrl = `wgnds://fetchData?type=videos&tag=${genaretedtag}&title=${encodeURIComponent(title)}`
-      const dataSourceUrl = { feed_parent_ds_url: tagDSUrl };
-      extensions = { dataSourceUrl, free: true };
-
+      let extensions = { free: true };
+      
       if (video) {
         try {
           if (video['video-meta']['akamai-player'].id || video['video-meta']['akamai-player'].hls_id) {
@@ -47,12 +43,10 @@ export function mapItem(feed_parent_ds_url) {
             type = 'video/ooyala';
             src =  await getStreamUrl(video['video-meta']['ooyala-player']['code']);
           }
-          //for video we ovveride the datasource url to load the parent and not a tag.
-          extensions.dataSourceUrl.feed_parent_ds_url = feed_parent_ds_url;
         } catch (err) {}
       } else {
       }
-
+      
       const open_with_plugin_id = 'VideoInfoScreenRN';
       const year = "";// new Date(_published).getFullYear();
       extensions.open_with_plugin_id = open_with_plugin_id;
@@ -60,8 +54,8 @@ export function mapItem(feed_parent_ds_url) {
 
       const content = { type, src };
 
-      const itemTypeValue = video ? 'video' : 'feed';
-
+      const itemTypeValue = video ? 'video' : 'feed';      
+      extensions.dataSourceUrl = getTag(itemTypeValue, item, title, feed_parent_ds_url);
       return {
         type: {
           value: itemTypeValue
@@ -78,4 +72,24 @@ export function mapItem(feed_parent_ds_url) {
       return {};
     }
   };
+}
+
+
+function getTag(type, item, title, feed_parent_ds_url){
+  const dataSourceUrl ={};
+  var relatedUrl;
+  var tag = item.related_items_tag && item.related_items_tag.href ?  item.related_items_tag.href : undefined;
+  if(!tag){    
+    //fallback for any case that we don't have related items. 
+    if(type == "video"){
+      relatedUrl = feed_parent_ds_url
+    }else{
+      tag = title.toLowerCase().replace(/ /g, "-") + "-related";
+      relatedUrl = `wgnds://fetchData?type=videos&tag=${tag}&title=${encodeURIComponent(title)}`
+    }
+  }else{
+    relatedUrl = `wgnds://fetchData?type=tag&full_path=${tag}&title=${encodeURIComponent(title)}`
+  }
+  dataSourceUrl.feed_parent_ds_url =  relatedUrl;
+  return dataSourceUrl;
 }
