@@ -3,7 +3,7 @@ import { createFeedItem, addItemsImages, addItemsVideos } from '../../utils';
 import { mapItem } from '../../mappers/mapItem';
 import queryString from 'query-string';
 
-export async function tag(params) {
+export async function tags(params) {
   const { tag, type, full_path, title: ptitle } = params;
   try {
     const feedUrl = `wgnds://fetchData?${queryString.stringify(params)}`;
@@ -29,7 +29,7 @@ export async function tag(params) {
         })
         .map(mapItem(feedUrl))
       ),
-      imageWidth
+      undefined
     );
 
     if (ptitle) {

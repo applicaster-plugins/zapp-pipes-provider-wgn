@@ -88,7 +88,7 @@ function getTag(type, item, title, feed_parent_ds_url){
       relatedUrl = `wgnds://fetchData?type=videos&tag=${tag}&title=${encodeURIComponent(title)}`
     }
   }else{
-    relatedUrl = `wgnds://fetchData?type=tag&full_path=${tag}&title=${encodeURIComponent(title)}`
+    relatedUrl = `wgnds://fetchData?type=tags&full_path=${encodeURIComponent(tag)}&title=${encodeURIComponent(title)}`
   }
   dataSourceUrl.feed_parent_ds_url =  relatedUrl;
   return dataSourceUrl;

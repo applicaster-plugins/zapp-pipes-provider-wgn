@@ -15,7 +15,7 @@ export const config = {
     { key: 'image_base_3x4', width: 450, height: 600, ratio: 3 / 4 }
   ],
   DEFAULT_IMAGE_WIDTH: 600,
-  tagMap = {
+  tagMap: {
     videos: "wgn-videos",
     episodes: "wgn-series",
     series: "wgn-episodes"

@@ -1,5 +1,5 @@
 export const manifest = {
-  handlers: ['shows', 'seasons', 'episodes', 'videos', 'test'],
+  handlers: ['shows', 'seasons', 'episodes', 'videos', 'tags', 'test'],
   help: {
     shows: {
       description: 'retrieves a wgn series feed',
@@ -23,7 +23,7 @@ export const manifest = {
         tag: 'tag'
       }
     },
-    tag: {
+    tags: {
       description: 'retrieves items by tag',
       params: {
         tag: 'tag id',
