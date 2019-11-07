@@ -23,6 +23,14 @@ export const manifest = {
         tag: 'tag'
       }
     },
+    tag: {
+      description: 'retrieves items by tag',
+      params: {
+        tag: 'tag id',
+        type: 'tag type, videos/episodes/series.',
+        full_path: 'full path to the wordpress entry point',
+      }
+    },
     test: {
       description: 'test'
     }
