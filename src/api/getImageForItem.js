@@ -43,10 +43,15 @@ function  getImageList(array){
   ];
   
   if(array && array.length > 0 ){
+    var image_base_link = undefined;
     response.map(image => {
         array.map(item => {
           if(item.image_tags){
             item.image_tags.map(tag => {
+              //image base link should be 16x9 ratio in order to support TV
+              if(tag.name == "16x9"){
+                image_base_link = item.source_url;
+              }
               if (image.lable == tag.name){
                 image.link = item.source_url;
                 return;
@@ -56,11 +61,16 @@ function  getImageList(array){
           }
         })
     })
+
+    if(!image_base_link){
+      image_base_link =  array[0].source_url
+    }
+
      response.push(
      {
        key: "image_base",
        lable:"image_base",
-       link: array[0].source_url
+       link: image_base_link 
       }
     )
   }
